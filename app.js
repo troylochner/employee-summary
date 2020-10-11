@@ -11,6 +11,65 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 
+function getUserData() {
+    
+    inquirer.prompt([       
+        {
+            type: "input",
+            message: "Employee Name : ",
+            name: "name",
+            default : "John Doe"
+          },
+          {
+            type: "input",
+            message: "Employee Email",
+            name: "email",
+            default : "John.Doe@email.com"
+          },
+          {
+            type: "list",
+            message: "What is the job role?",
+            name: "roleType",
+            choices: [
+              "Employee",
+              "Manager",
+              "Engineer",
+              "Intern"
+            ],
+            default : "Employee"
+          },
+          {
+            type: "input",
+            message: "Office Extension : ",
+            name: "officeNumber",
+            default : "3345",
+            when: (answers) => answers.roleType === 'Manager'
+          },
+          {
+            type: "input",
+            message: "GitHub UserName : ",
+            name: "gihub",
+            default : "troylochner",
+            when: (answers) => answers.roleType === 'Engineer'
+          },
+          {
+            type: "input",
+            message: "University: ",
+            name: "school",
+            default : "St. John's",
+            when: (answers) => answers.roleType === 'Intern'
+          },
+          
+          
+          
+
+    ])
+};
+
+//x = getUserData();
+
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
