@@ -9,65 +9,92 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
 
 
-function getUserData() {
+//MAKING A FUNCTION TO ASK TO ADD TO THE LOOP HERE... LOOK AT THE GAME JS AS MY REFERENCE
+
+function askToAdd() {
+    inquirer
+        .prompt([{
+            type: "confirm",
+            name: "addAnother",
+            message: "Would you like to add another employee?"
+        }])
+        .then(val => {
+            //IF WE ARE ADDING ANOTHER USER - RUN AGAIN / ELSE RENDER THE HTML PAGES
+            if (val.addAnother) {
+                this.addUserData();
+            } else {
+                console.log('nevermind')
+                //this.render();
+            }
+        });
+    }
+
     
-    inquirer.prompt([       
-        {
-            type: "input",
-            message: "Employee Name : ",
-            name: "name",
-            default : "John Doe"
-          },
-          {
-            type: "input",
-            message: "Employee Email",
-            name: "email",
-            default : "John.Doe@email.com"
-          },
-          {
-            type: "list",
-            message: "What is the job role?",
-            name: "roleType",
-            choices: [
-              "Employee",
-              "Manager",
-              "Engineer",
-              "Intern"
-            ],
-            default : "Employee"
-          },
-          {
-            type: "input",
-            message: "Office Extension : ",
-            name: "officeNumber",
-            default : "3345",
-            when: (answers) => answers.roleType === 'Manager'
-          },
-          {
-            type: "input",
-            message: "GitHub UserName : ",
-            name: "gihub",
-            default : "troylochner",
-            when: (answers) => answers.roleType === 'Engineer'
-          },
-          {
-            type: "input",
-            message: "University: ",
-            name: "school",
-            default : "St. John's",
-            when: (answers) => answers.roleType === 'Intern'
-          },
-          
-          
-          
+async function addUserData() {
+    try {
+        const
+            newEmployee = await inquirer.prompt([{
+                    type: "input",
+                    message: "Employee Name : ",
+                    name: "name",
+                    default: "John Doe"
+                },
+                {
+                    type: "input",
+                    message: "Employee Email",
+                    name: "email",
+                    default: "John.Doe@email.com"
+                },
+                {
+                    type: "list",
+                    message: "What is the job role?",
+                    name: "roleType",
+                    choices: [
+                        "Employee",
+                        "Manager",
+                        "Engineer",
+                        "Intern"
+                    ],
+                    default: "Employee"
+                },
+                {
+                    type: "input",
+                    message: "Office Extension : ",
+                    name: "officeNumber",
+                    default: "3345",
+                    when: (answers) => answers.roleType === 'Manager'
+                },
+                {
+                    type: "input",
+                    message: "GitHub UserName : ",
+                    name: "gihub",
+                    default: "troylochner",
+                    when: (answers) => answers.roleType === 'Engineer'
+                },
+                {
+                    type: "input",
+                    message: "University: ",
+                    name: "school",
+                    default: "St. John's",
+                    when: (answers) => answers.roleType === 'Intern'
+                }
+            ]);
 
-    ])
+        console.log(newEmployee.name)
+        console.log(newEmployee.email)
+        //console.log(newEmployee.roleType)
+        //console.log(newEmployee.roleType)
+
+
+    } catch (err) {
+        console.log(err);
+    }
 };
 
-//x = getUserData();
-
+askToAdd();
 
 
 // Write code to use inquirer to gather information about the development team members,
