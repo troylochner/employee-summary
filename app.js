@@ -77,6 +77,14 @@ const addUser = () => {
                     switch (data.roleType) {
                         case "Manager":
                             console.log('Manager');
+                            const addManager = new Manager(
+                                data.name,
+                                1,
+                                data.email,
+                                data.officeNumber
+                            )
+                            team.push(addManager);
+                            console.log(team);
                             //addManager();
                             break;
                         case "Engineer":
@@ -91,55 +99,18 @@ const addUser = () => {
                     switch (data.addMore) {
                         case "Yes":
                             console.log('Adding another');
-                            //addManager();
+                            addUser();
                             break;
                         case "No":
                             console.log('Stopping');
-                            //addEngineer();
+                            //RENDER HTML;
                             break;
                     }
 
                     })}
 
-                    addUser();
+addUser();
 
-        //console.log(newEmployee.name)
-        //console.log(newEmployee.email)
-        
-        //const x = new Employee(newEmployee.name,1,newEmployee.email)
-        //console.log(newEmployee.roleType)
-        //console.log(newEmployee.roleType)
-
-        //console.log(x)
-        ///render(x);
-
-
-
-//addUserData();
-
-//MAKING A FUNCTION TO ASK TO ADD TO THE LOOP HERE... LOOK AT THE GAME JS AS MY REFERENCE
-/*
-function askToAdd() {
-    inquirer
-        .prompt([{
-            type: "confirm",
-            name: "addAnother",
-            message: "Would you like to add another employee?"
-        }])
-        .then(val => {
-            //IF WE ARE ADDING ANOTHER USER - RUN AGAIN / ELSE RENDER THE HTML PAGES
-            if (val.addAnother) {
-                this.addUserData();
-            } else {
-                console.log('nevermind')
-                //this.render();
-            }
-        });
-    }
-*/
-
-
-//askToAdd();
 
 
 // Write code to use inquirer to gather information about the development team members,
