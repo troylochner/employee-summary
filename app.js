@@ -117,11 +117,19 @@ const addUser = () => {
                     console.log('Stopping');
                     console.log(team);
                     console.log("This is where HTML should get rendered.")
+                    renderHTML();
                     //RENDER HTML;
                     break;
             }
 
         })
+}
+
+const renderHTML = () => {
+    if(!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFileSync(outputPath,render(team),"utf-8");
 }
 
 addUser();
