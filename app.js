@@ -43,7 +43,19 @@ const addUser = () => {
                 type: "input",
                 message: "Employee Email",
                 name: "email",
-                default: "John.Doe@email.com"
+                default: "John.Doe@email.com",
+                //EMAIL VALIDATION REGEX CREDIT GOES TO Amitabh-K ON GITHUB @ https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
+                validate : function (email){
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+                    if (valid) {
+                          return true;
+                      } else {
+                          console.log(".  Please enter a valid email")
+                          return false;
+                      }
+                }
+                
             },
 
             {
