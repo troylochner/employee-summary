@@ -1,7 +1,7 @@
 # Employee-Summary-Generator
 # A node command line data entry tool.
 
-https://img.shields.io/badge/Created%20by-Troy%20Lochner%20--%202020-critical
+![badge](https://img.shields.io/badge/Created%20by-Troy%20Lochner%20--%202020-critical)
 
 # Usage :
 To run this application ; 
