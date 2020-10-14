@@ -15,99 +15,114 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const team = [] ; 
+const team = [];
 
 const addUser = () => {
     return inquirer
         .prompt([{
-                    type: "input",
-                    message: "Employee Name : ",
-                    name: "name",
-                    default: "John Doe"
-                },
-                {
-                    type: "input",
-                    message: "Employee Email",
-                    name: "email",
-                    default: "John.Doe@email.com"
-                },
-                {
-                    type: "list",
-                    message: "What is the job role?",
-                    name: "roleType",
-                    choices: [
-                        "Manager",
-                        "Engineer",
-                        "Intern"
-                    ],
-                    default: "Employee"
-                },
-                {
-                    type: "input",
-                    message: "Office Extension : ",
-                    name: "officeNumber",
-                    default: "3345",
-                    when: (answers) => answers.roleType === 'Manager'
-                },
-                {
-                    type: "input",
-                    message: "GitHub UserName : ",
-                    name: "gihub",
-                    default: "troylochner",
-                    when: (answers) => answers.roleType === 'Engineer'
-                },
-                {
-                    type: "input",
-                    message: "University: ",
-                    name: "school",
-                    default: "St. John's",
-                    when: (answers) => answers.roleType === 'Intern'
-                },
-                {
-                    type: "list",
-                    message: "Would you like to add another team member?",
-                    name: "addMore",
-                    choices: [
-                        "Yes",
-                        "No"
-                    ],
-                    default: "Yes"
-                }])
-                .then ((data) => {
-                    switch (data.roleType) {
-                        case "Manager":
-                            console.log('Manager');
-                            const addManager = new Manager(
-                                data.name,
-                                1,
-                                data.email,
-                                data.officeNumber
-                            )
-                            team.push(addManager);
-                            console.log(team);
-                            //addManager();
-                            break;
-                        case "Engineer":
-                            console.log('Engineer');
-                            //addEngineer();
-                            break;
-                        case "Intern":
-                            console.log('Intern');
-                            //addIntern();
-                            break;
-                    } ;
-                    switch (data.addMore) {
-                        case "Yes":
-                            console.log('Adding another');
-                            addUser();
-                            break;
-                        case "No":
-                            console.log('Stopping');
-                            //RENDER HTML;
-                            break;
-                    }
+                type: "input",
+                message: "Employee Name : ",
+                name: "name",
+                default: "John Doe"
+            },
+            {
+                type: "input",
+                message: "Employee Email",
+                name: "email",
+                default: "John.Doe@email.com"
+            },
+            {
+                type: "list",
+                message: "What is the job role?",
+                name: "roleType",
+                choices: [
+                    "Manager",
+                    "Engineer",
+                    "Intern"
+                ],
+                default: "Employee"
+            },
+            {
+                type: "input",
+                message: "Office Extension : ",
+                name: "officeNumber",
+                default: "3345",
+                when: (answers) => answers.roleType === 'Manager'
+            },
+            {
+                type: "input",
+                message: "GitHub UserName : ",
+                name: "github",
+                default: "troylochner",
+                when: (answers) => answers.roleType === 'Engineer'
+            },
+            {
+                type: "input",
+                message: "University: ",
+                name: "school",
+                default: "St. John's",
+                when: (answers) => answers.roleType === 'Intern'
+            },
+            {
+                type: "list",
+                message: "Would you like to add another team member?",
+                name: "addMore",
+                choices: [
+                    "Yes",
+                    "No"
+                ],
+                default: "Yes"
+            }
+        ])
+        .then((data) => {
+            switch (data.roleType) {
+                case "Manager":
+                    console.log('Manager');
+                    const addManager = new Manager(
+                        data.name,
+                        1,
+                        data.email,
+                        data.officeNumber
+                    )
+                    team.push(addManager);
+                    break;
+                case "Engineer":
+                    console.log('Engineer');
+                    const addEngineer = new Engineer(
+                        data.name,
+                        2,
+                        data.email,
+                        data.github
+                    )
+                    team.push(addEngineer);
 
-                    })}
+                    break;
+                case "Intern":
+                    console.log('Intern');
+                    const addIntern = new Intern(
+                        data.name,
+                        2,
+                        data.email,
+                        data.school
+                    )
+                    team.push(addIntern);
+                    break;
+            };
+            switch (data.addMore) {
+                case "Yes":
+                    console.log('Adding another');
+                    addUser();
+                    break;
+                case "No":
+                    console.log('Stopping');
+                    console.log(team);
+                    console.log("This is where HTML should get rendered.")
+                    //RENDER HTML;
+                    break;
+            }
+
+        })
+}
 
 addUser();
 
