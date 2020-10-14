@@ -1,42 +1,25 @@
+//LIB MODULES
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
+//ADDITIONAL NODE MODULES
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+//DEFINING OUTPUT
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const Employee = require("./lib/Employee");
 
+const team = [] ; 
 
-//MAKING A FUNCTION TO ASK TO ADD TO THE LOOP HERE... LOOK AT THE GAME JS AS MY REFERENCE
-
-function askToAdd() {
-    inquirer
+const addUser = () => {
+    return inquirer
         .prompt([{
-            type: "confirm",
-            name: "addAnother",
-            message: "Would you like to add another employee?"
-        }])
-        .then(val => {
-            //IF WE ARE ADDING ANOTHER USER - RUN AGAIN / ELSE RENDER THE HTML PAGES
-            if (val.addAnother) {
-                this.addUserData();
-            } else {
-                console.log('nevermind')
-                //this.render();
-            }
-        });
-    }
-
-    
-async function addUserData() {
-    try {
-        const
-            newEmployee = await inquirer.prompt([{
                     type: "input",
                     message: "Employee Name : ",
                     name: "name",
@@ -53,7 +36,7 @@ async function addUserData() {
                     message: "What is the job role?",
                     name: "roleType",
                     choices: [
-                        "Employee",
+                        //"Employee",
                         "Manager",
                         "Engineer",
                         "Intern"
@@ -80,21 +63,61 @@ async function addUserData() {
                     name: "school",
                     default: "St. John's",
                     when: (answers) => answers.roleType === 'Intern'
-                }
-            ]);
+                },
+                {
+                    type: "list",
+                    message: "Would you like to add another team member?",
+                    name: "add another",
+                    choices: [
+                        "Yes",
+                        "No"
+                    ],
+                    default: "Yes"
+                }])
+                .then ((data) => {
+                    switch (data.change){}
 
-        console.log(newEmployee.name)
-        console.log(newEmployee.email)
+                    })}
+
+                    addUser();
+
+        //console.log(newEmployee.name)
+        //console.log(newEmployee.email)
+        
+        //const x = new Employee(newEmployee.name,1,newEmployee.email)
         //console.log(newEmployee.roleType)
         //console.log(newEmployee.roleType)
 
+        //console.log(x)
+        ///render(x);
 
-    } catch (err) {
-        console.log(err);
+
+
+//addUserData();
+
+//MAKING A FUNCTION TO ASK TO ADD TO THE LOOP HERE... LOOK AT THE GAME JS AS MY REFERENCE
+/*
+function askToAdd() {
+    inquirer
+        .prompt([{
+            type: "confirm",
+            name: "addAnother",
+            message: "Would you like to add another employee?"
+        }])
+        .then(val => {
+            //IF WE ARE ADDING ANOTHER USER - RUN AGAIN / ELSE RENDER THE HTML PAGES
+            if (val.addAnother) {
+                this.addUserData();
+            } else {
+                console.log('nevermind')
+                //this.render();
+            }
+        });
     }
-};
+*/
 
-askToAdd();
+
+//askToAdd();
 
 
 // Write code to use inquirer to gather information about the development team members,
