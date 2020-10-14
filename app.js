@@ -17,6 +17,9 @@ const render = require("./lib/htmlRenderer");
 
 const team = [];
 
+//ITTERATIVE ID
+var xid = 1001
+
 const addUser = () => {
     return inquirer
         .prompt([{
@@ -80,7 +83,7 @@ const addUser = () => {
                     console.log('Manager');
                     const addManager = new Manager(
                         data.name,
-                        1,
+                        xid,
                         data.email,
                         data.officeNumber
                     )
@@ -90,7 +93,7 @@ const addUser = () => {
                     console.log('Engineer');
                     const addEngineer = new Engineer(
                         data.name,
-                        2,
+                        xid,
                         data.email,
                         data.github
                     )
@@ -101,7 +104,7 @@ const addUser = () => {
                     console.log('Intern');
                     const addIntern = new Intern(
                         data.name,
-                        2,
+                        xid,
                         data.email,
                         data.school
                     )
@@ -111,6 +114,7 @@ const addUser = () => {
             switch (data.addMore) {
                 case "Yes":
                     console.log('Adding another');
+                    xid ++;
                     addUser();
                     break;
                 case "No":
