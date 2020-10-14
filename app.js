@@ -36,7 +36,6 @@ const addUser = () => {
                     message: "What is the job role?",
                     name: "roleType",
                     choices: [
-                        //"Employee",
                         "Manager",
                         "Engineer",
                         "Intern"
@@ -67,7 +66,7 @@ const addUser = () => {
                 {
                     type: "list",
                     message: "Would you like to add another team member?",
-                    name: "add another",
+                    name: "addMore",
                     choices: [
                         "Yes",
                         "No"
@@ -75,7 +74,30 @@ const addUser = () => {
                     default: "Yes"
                 }])
                 .then ((data) => {
-                    switch (data.change){}
+                    switch (data.roleType) {
+                        case "Manager":
+                            console.log('Manager');
+                            //addManager();
+                            break;
+                        case "Engineer":
+                            console.log('Engineer');
+                            //addEngineer();
+                            break;
+                        case "Intern":
+                            console.log('Intern');
+                            //addIntern();
+                            break;
+                    } ;
+                    switch (data.addMore) {
+                        case "Yes":
+                            console.log('Adding another');
+                            //addManager();
+                            break;
+                        case "No":
+                            console.log('Stopping');
+                            //addEngineer();
+                            break;
+                    }
 
                     })}
 
