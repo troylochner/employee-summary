@@ -7,27 +7,38 @@ body {
     color: #78e08f;
     font-family: Arial, Helvetica, sans-serif;
     height: 100px;
+
 }
 
 .card {
     margin: 10px;
     border: 0px;
+    
 
+}
+
+.team-area{
+    box-shadow: 10px 10px 10px #0a3d62;
 }
 
 .card-header {
     background-color: #60a3bc;
-    font-size: 10.5vw;
-
 }
 
+.card-title{
+    font-size: small;
+    color: #78e08f;
+
+    
+}
 .card-body {
     background-color: #3c6382;
-    min-height: 400px;
+    height: 300px;
   
 }
 
 .list-group {
-    height: inherit;
-    min-height: 350px;
+    font-size: x-small;
+    height: 200px;
+    box-shadow: 10px 10px 10px #0a3d62;
 }
