@@ -32,12 +32,12 @@ body {
 }
 .card-body {
     background-color: #3c6382;
-    height: 300px;
+    height: 400px;
   
 }
 
 .list-group {
-    font-size: x-small;
-    height: 200px;
-    box-shadow: 10px 10px 10px #0a3d62;
+    font-size: xx-small;
+    height: 400px;
+    
 }

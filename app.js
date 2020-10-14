@@ -93,7 +93,7 @@ const addUser = () => {
         .then((data) => {
             switch (data.roleType) {
                 case "Manager":
-                    console.log('Manager');
+                    console.log('Added a manager...');
                     const addManager = new Manager(
                         data.name,
                         uuid.v4(),
@@ -103,7 +103,7 @@ const addUser = () => {
                     team.push(addManager);
                     break;
                 case "Engineer":
-                    console.log('Engineer');
+                    console.log('Added an engineer...');
                     const addEngineer = new Engineer(
                         data.name,
                         uuid.v4(),
@@ -114,7 +114,7 @@ const addUser = () => {
 
                     break;
                 case "Intern":
-                    console.log('Intern');
+                    console.log('Added an intern...');
                     const addIntern = new Intern(
                         data.name,
                         uuid.v4(),
@@ -126,14 +126,14 @@ const addUser = () => {
             };
             switch (data.addMore) {
                 case "Yes":
-                    console.log('Adding another');
+                    console.log('adding another employee...');
                     //userID++;
                     addUser();
                     break;
                 case "No":
-                    console.log('Stopping');
+                    console.log('Data entry for the team is complete.');
                     console.log(team);
-                    console.log("This is where HTML should get rendered.")
+                    console.log("Check the output directory for the completed HTML file. ")
                     renderHTML();
                     //RENDER HTML;
                     break;
