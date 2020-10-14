@@ -8,6 +8,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const uuid = require("uuid");
 
 //DEFINING OUTPUT
 const OUTPUT_DIR = path.resolve(__dirname, "output");
@@ -15,9 +16,9 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 
-//START USERID AT 1001 AND MAKE AN EMPTY TEAM ; USERIDS WILL BE AUTOMATICALLY GENERATED - THIS WILL AVOID ANY POTENTIAL DUPLICATES FROM BEING CREATED
+//START USERID AT 1001 AND MAKE AN EMPTY TEAM ; USERIDS WILL BE AUTOMATICALLY GENERATED - THIS WILL AVOID ANY POTENTIAL DUPLICATES FROM BEING CREATED ; switching ids to uuids to be extra.
 const team = [];
-var userID = 1001
+//var userID = 1001
 
 const addUser = () => {
     return inquirer
@@ -95,7 +96,7 @@ const addUser = () => {
                     console.log('Manager');
                     const addManager = new Manager(
                         data.name,
-                        userID,
+                        uuid.v4(),
                         data.email,
                         data.officeNumber
                     )
@@ -105,7 +106,7 @@ const addUser = () => {
                     console.log('Engineer');
                     const addEngineer = new Engineer(
                         data.name,
-                        userID,
+                        uuid.v4(),
                         data.email,
                         data.github
                     )
@@ -116,7 +117,7 @@ const addUser = () => {
                     console.log('Intern');
                     const addIntern = new Intern(
                         data.name,
-                        userID,
+                        uuid.v4(),
                         data.email,
                         data.school
                     )
@@ -126,7 +127,7 @@ const addUser = () => {
             switch (data.addMore) {
                 case "Yes":
                     console.log('Adding another');
-                    userID++;
+                    //userID++;
                     addUser();
                     break;
                 case "No":
