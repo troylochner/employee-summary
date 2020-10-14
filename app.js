@@ -12,12 +12,11 @@ const fs = require("fs");
 //DEFINING OUTPUT
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
 const render = require("./lib/htmlRenderer");
 
-const team = [];
 
-//USERID
+//START USERID AT 1001 AND MAKE AN EMPTY TEAM ; USERIDS WILL BE AUTOMATICALLY GENERATED - THIS WILL AVOID ANY POTENTIAL DUPLICATES FROM BEING CREATED
+const team = [];
 var userID = 1001
 
 const addUser = () => {
